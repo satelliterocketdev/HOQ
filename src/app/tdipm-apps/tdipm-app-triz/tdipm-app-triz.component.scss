@@ -1,0 +1,230 @@
+//Total content
+#contradictions{
+    padding: 10px;
+}
+#whole{
+    display: flex;
+    margin: 12px auto;
+    padding: 0 8px;
+    flex-direction: column;
+    align-items: center;
+}
+// Top banner
+#top-banner{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 20px 10px 20px 10px;
+    font-size: 18px;
+    div{
+        margin-right: 50px;
+        select{
+            font-size: 20px;
+            width: 100px;
+        }
+    }
+    button{
+        margin-left: 20px;
+        min-width: 130px;
+        padding: 5px;
+    }
+}
+//Contradiction
+.plus {
+    height: 24px;
+    width: 24px;
+    display: inline-block;
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+    font-size: 33px;
+    font-weight: bold;
+    line-height: 17px;
+    text-align: center;
+  }
+  
+.plus::before {
+    content: "+";
+}
+
+.plus span{
+    font-size: 12px;
+}
+
+.minus {
+    height: 24px;
+    width: 24px;
+    display: inline-block;
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+    font-size: 33px;
+    font-weight: bold;
+    line-height: 17px;
+    text-align: center;
+  }
+  
+.minus::before {
+    content: "-";
+}
+
+.minus span{
+    font-size: 12px;
+}
+
+.header{
+    display: flex;
+    min-width: 885px;
+    background-color: gainsboro;
+    align-items: center;
+    margin: 20px 0 20px 0px;
+    .inner-text{
+        font-size: 17px;
+        margin-left: 7px;
+    }
+    .header-right{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        div{
+            font-size: 17px;
+        }
+    }
+}
+table {
+    font-size: 17px;
+    width: 100%;
+    padding: 0;
+    border-spacing: 0px;
+    select{
+        width: 100%;
+        font-size: 18px;
+    }
+    input{
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 17px;
+    }
+    td:first-child{
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+th{
+    background-color: darkgray;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+}
+th:last-child{
+    border-right: 1px solid black;
+}
+td {
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0;
+    &.customer-label-width {
+      width: 60px;
+    }
+    &.customer-width {
+      width: 180px;
+    }
+    &.key-width {
+      width: 265px;
+    }
+    &.cell-width {
+      width: 40px;
+    }
+    &.cell-height {
+      height: 30px;
+    }
+}
+td:last-child{
+    border-right: 1px solid black;
+}
+tr:last-child td{
+    border-bottom: 1px solid black;
+}
+.radio-table td:first-child{
+    border-left: 0px;
+    border-top: 0px;
+    border-bottom: 0px;
+}
+.radio-table th:first-child{
+    border-left: 0px;
+    border-bottom: 0px;
+    border-top: 0px;
+    background-color: transparent;
+}
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(1.5); /* IE */
+  -moz-transform: scale(1.5); /* FF */
+  -webkit-transform: scale(1.5); /* Safari and Chrome */
+  -o-transform: scale(1.5); /* Opera */
+  transform: scale(1.5);
+  padding: 10px;
+}
+
+// Navigation-bottom
+.navigation{
+    display: flex;
+    justify-content: flex-end;
+    font-size: 18px;
+    padding-right: 10px;
+    width: 100%;
+    button{
+        display: flex;
+        align-items: center;
+    }
+}
+.text-center{
+    text-align: center
+}
+.second-table{
+    margin-top: 2px;
+    .button-th{
+        background: transparent;
+        width: 70px;
+        border-top: 0;
+        border-left: 0;
+        padding-right: 9px;
+    }
+    input{
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 17px;
+    }
+}
+.third-table{
+    margin-top: 23px;
+    input[type=checkbox]
+    {
+        /* Double-sized Checkboxes */
+        -ms-transform: scale(1.2); /* IE */
+        -moz-transform: scale(1.2); /* FF */
+        -webkit-transform: scale(1.2); /* Safari and Chrome */
+        -o-transform: scale(1.2); /* Opera */
+        transform: scale(1.2);
+        padding: 10px;
+    }
+}
+.back-grey{
+    background-color: grey;
+}
+table, th, td {
+    position: relative;
+}
+textarea{
+    width: 100%;
+    box-sizing: border-box;
+    resize: none;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+}

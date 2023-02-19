@@ -1,0 +1,266 @@
+* {
+  box-sizing: border-box;
+}
+
+// ------- input regions ---------
+.input-data-wrapper {
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  margin: 10px;
+  padding: 5px;
+  .input-item {
+    margin-right: 15px;
+  }
+}
+// ------- table -----------------
+table {
+  border-spacing: 0px;
+}
+td {
+  border-left: 1px solid black;
+  border-top: 1px solid black;
+  border-collapse: collapse;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0;
+  &.customer-label-width {
+    width: 60px;
+  }
+  &.customer-width {
+    width: 180px;
+  }
+  &.key-width {
+    width: 265px;
+  }
+  &.cell-width {
+    width: 40px;
+  }
+  &.cell-height {
+    height: 30px;
+  }
+}
+// ------- input -----
+.cell-input {
+  background: transparent;
+  border: none;
+  position: absolute;
+  margin: 0px;
+  padding: 2px;
+  left:0px;
+  top:0px;
+  right: 0px;
+  bottom: 0px;
+  text-align: center;
+  box-sizing: border-box;
+  padding-left: 5px;
+}
+.technical-input {
+  width: 28px;
+  transform: rotateZ(45deg);
+  vertical-align: middle;
+  font-weight: bold;
+  padding-top: 7px;
+}
+// ------- text-align-------
+.text-align-center {
+  text-align: center;
+}
+.text-align-left {
+  text-align: left;
+}
+// ------- background-color-----------
+.background-color1 {
+  background-color: rgb(91,155,213);
+}
+.background-color2 {
+  background-color: rgb(221,235,247);
+}
+.background-color3 {
+  background-color: rgb(231,230,230);
+}
+.background-color4 {
+  background-color: #FFF2CC;
+}
+.background-color5 {
+  background-color: rgb(244,176,132);
+}
+.background-color6 {
+  background-color: #F4B084;
+}
+.background-color7 {
+  background-color: #C6E0B4;
+}
+// ------- text-direction-------------
+.text-direction-vertical {
+  writing-mode: vertical-lr;
+  transform: rotateZ(180deg);
+}
+// ------- input direction-------------
+.input-direction-vertical {
+  transform: rotate(-90deg);
+  transform-origin: left 0;
+  position: absolute;
+  bottom: 0;
+  top: 100%;
+  height: 40px;
+  text-align: left;
+}
+
+// -------- border class --------------
+.border-none {
+  border: none;
+}
+.border-right {
+  border-right: 1px solid black;
+}
+.border-bottom {
+  border-bottom: 1px solid black;
+}
+//--------- position class -------------
+.position-relative {
+  position: relative;
+}
+.position-absolute {
+  position: absolute;
+}
+// ---------(right side) ---------
+// -------- techinal key descrption ------
+.technical-key-desc {
+  position: absolute;
+  top: 0%;
+  height: 50%;
+  height: 180px;
+  width: 265px;
+  background-color: #E6E6E6;
+  border: 1px solid rgb(180, 180, 180);
+  box-sizing: border-box;
+}
+// -------- direction key descrption ------
+.direction-key-desc {
+  position: absolute;
+  top: calc(50% + 1px);
+  height: 180px;
+  width: 265px;
+  background-color: rgb(251,229,214);
+  border: 1px solid rgb(180, 180, 180);
+  box-sizing: border-box;
+}
+// 
+// -------- (up side) ------------
+// -------- technical table ------
+.technical-table-wrapper {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  // position: absolute;
+  bottom: 0px;
+  width: 100%;
+  // height: 100%;
+}
+.technical-table {
+  width: 140px;
+  height: 140px;
+  transform: translateY(50%) rotateZ(-45deg);
+}
+.td-technical-relationship{
+  background-color: #E7E6E6;
+}
+.td-technical-direction{
+  background-color: #FCE4D6;
+  height: 33px;
+}
+.table-key-explanation{
+  padding: 2px;
+  border-spacing: 0.1em;
+}
+.table-key-explanation .float-left{
+  float: left;
+}
+// -------- context menu ------
+.context-menu{
+  position: fixed; 
+  z-index: 10; 
+  background-color: white;
+  border: solid 1px white;
+  padding: 2px;
+}
+.small-font{
+  font-size: 1.8em;
+}
+.icon-placeholder{
+  cursor: pointer !important ;
+}
+.icon-mouseover{
+  font-size: 2.8em;
+}
+.shadow {
+  -moz-box-shadow:    inset 0 0 7px #000000;
+  -webkit-box-shadow: inset 0 0 7px #000000;
+  box-shadow:         inset 0 0 7px #000000;
+}
+// -------- roof top technical relationshionships Key ------
+.roof-key-explanation{
+  float: right;
+  width: 180px;
+  border: 1px solid #b4b4b4;
+  box-sizing: border-box;
+}
+.float-left{
+  float: left;
+}
+
+// -------- tooltip -------
+*[data-tooltip] {
+  position: relative;
+}
+
+*[data-tooltip]::after {
+  content: attr(data-tooltip);
+
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 150px;
+
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: opacity .15s ease-in-out;
+  -moz-transition: opacity .15s ease-in-out;
+  -ms-transition: opacity .15s ease-in-out;
+  -o-transition: opacity .15s ease-in-out;
+  transition: opacity .15s ease-in-out;
+
+  display: block;
+  font-size: 12px;
+  line-height: 16px;
+  background: #fefdcd;
+  padding: 2px 2px;
+  border: 1px solid #c0c0c0;
+  box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.4);
+}
+
+*[data-tooltip]:hover::after {
+  opacity: 1;
+}
+
+// Navigation-bottom
+.navigation{
+  display: flex;
+  justify-content: flex-end;
+  font-size: 18px;
+  padding-right: 10px;
+  button{
+      display: flex;
+      align-items: center;
+  }
+}
+td input{
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14px;
+  color: #333;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}

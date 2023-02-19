@@ -1,0 +1,210 @@
+<div id="whole">
+    <!-- Top banner Section -->
+    <div id="top-banner">
+        <div>
+            <span>Number of Contradictions to Resolve : </span>
+            <select id="hall" [(ngModel)]="form.cntOfContradictions" (change)="selectChangeHandler()">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+            </select>
+        </div>
+        <button (click)="downloadPDF()">Print to PDF</button>
+        <button (click)="downloadExcel()">Download TRIZ Table</button>
+        <button (click)="clearAllContradictions()">Start Over</button>
+    </div>
+
+    <div id="contradictions" #content>
+        <div *ngFor="let item of modelData.mainData, let x = index" [ngClass]="{'back-grey' : item.resolved}">
+            <div class="header">
+                <span (click)="modelData.collapse[x] = !modelData.collapse[x]" style="cursor: pointer;"
+                    [ngClass]="{'plus': !modelData.collapse[x], 'minus': modelData.collapse[x]}"></span>
+                <div class="header-right">
+                    <span class="inner-text">Contradiction&nbsp;#{{x+1}}</span>
+                    <div>
+                        <label for="resolved">Contradiction Resolved?&nbsp;</label>
+                        <input type="checkbox" name="resolved" [checked]="item.resolved" (change)="onResolvedChange(x)">
+                    </div>
+                </div>
+            </div>
+            <div class="content" [hidden]="!modelData.collapse[x]">
+                <!-- Table for inputing improving feature and worsening features -->
+                <table>
+                    <tr>
+                        <th></th>
+                        <th>Technical Requirement from HOQ</th>
+                        <th>TRIZ Equivalent Feature</th>
+                        <th style="min-width: 270px;">Notes</th>
+                    </tr>
+                    <tr>
+                        <td>Improving Feature</td>
+                        <td>
+                            <select [(ngModel)]="item.original.improving.selHoq" [disabled]="item.resolved">
+                                <option *ngFor="let item of inputData.designParameters; index as row" [value]="row">
+                                    {{item.name}}</option>
+                            </select>
+                        </td>
+                        <td style="cursor: pointer;" (click)="openDialog(x, 'improving', item.resolved)">
+                            {{item.original.improving.selTriz != -1 ?
+                            jsonData.featureData[item.original.improving.selTriz-1]['no'] + " : " +
+                            jsonData.featureData[item.original.improving.selTriz-1]['parameter']
+                            : "-- Click to Select --"}}
+                        </td>
+                        <td><input type="text" [(ngModel)]="item.original.improving.note" /></td>
+                    </tr>
+                    <tr>
+                        <td>Worsening Feature</td>
+                        <td>
+                            <select [(ngModel)]="item.original.worsening.selHoq" [disabled]="item.resolved">
+                                <option *ngFor="let item of inputData.designParameters; index as row" [value]="row">
+                                    {{item.name}}</option>
+                            </select>
+                        </td>
+                        <td style="cursor: pointer;" (click)="openDialog(x, 'worsening', item.resolved)">
+                            {{item.original.worsening.selTriz != -1 ?
+                            jsonData.featureData[item.original.worsening.selTriz-1]['no'] + " : " +
+                            jsonData.featureData[item.original.worsening.selTriz-1]['parameter']
+                            : "-- Click to Select --"}}
+                        </td>
+                        <td><input type="text" [(ngModel)]="item.original.worsening.note" /></td>
+                    </tr>
+                </table>
+                <!-- Table for selecting triz inventing principle to reduce conflict -->
+                <button style="width: 470px;margin-top: 15px;" (click)="openInventiveDialog(x)" 
+                        [disabled]="item.resolved"
+                        color="primary" mat-raised-button>
+                    Select TRIZ Inventive Principle to Reduce Conflict
+                </button>
+                <table class="second-table">
+                    <tr>
+                        <th style="width: 470px;">TRIZ Inventive Principle</th>
+                        <th>Notes</th>
+                    </tr>
+                    <tr>
+                        <td style="min-width: 200px;">
+                            <span *ngIf="jsonData.inventive_principle_data[item.triz.selTriz]">
+                                {{jsonData.inventive_principle_data[item.triz.selTriz-1]['principle']}}
+                            </span>
+                        </td>
+                        <td style="min-width: 200px;height: 86px;">
+                            <textarea rows="5"
+                                      [disabled]="item.triz.selTriz == -1" 
+                                      [(ngModel)]="item.triz.note">
+                            </textarea>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Table for Updated improving feature and worsening features  -->
+                <table class="third-table">
+                    <tr>
+                        <th></th>
+                        <th>Original Tech. Requirement</th>
+                        <th>Updated Tech. Requirement</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td>Updated Improving Feature</td>
+                        <td><input type="text" disabled
+                                [value]="inputData.designParameters[item.original.improving.selHoq]['name']" /></td>
+                        <td><input type="text" [disabled]="item.updated.improving.nochange"
+                                [value]="item.updated.improving.nochange ? inputData.designParameters[item.original.improving.selHoq]['name'] : ''" />
+                        </td>
+                        <td>
+                            <mat-checkbox class="example-margin" 
+                                          [disabled]="item.resolved"
+                                          [(ngModel)]="item.updated.improving.nochange">No Change
+                                Required</mat-checkbox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Updated Worsening Feature</td>
+                        <td><input type="text" disabled
+                                [value]="inputData.designParameters[item.original.worsening.selHoq]['name']" /></td>
+                        <td><input type="text" [disabled]="item.updated.worsening.nochange"
+                                [value]="item.updated.worsening.nochange ? inputData.designParameters[item.original.worsening.selHoq]['name'] : ''" />
+                        </td>
+                        <td>
+                            <mat-checkbox class="example-margin" 
+                                          [disabled]="item.resolved"
+                                          [(ngModel)]="item.updated.worsening.nochange">No Change
+                                Required</mat-checkbox>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    <!-- Navigation button for routing to HOQ -->
+    <div class="navigation">
+        <button mat-raised-button (click)="navigateHOQ()">
+            <i class="fas fa-arrow-left" style="font-size: 25px; color: blue;"></i>&nbsp;Navigate to House of Quality
+            (HOQ)
+        </button>
+    </div>
+
+    <!-- Dialog for selecting improving feature and worsening feature -->
+    <ng-template #editCompanyModal>
+        <div mat-dialog-actions>
+            <button mat-raised-button mat-dialog-close color="primary">Close</button>
+        </div>
+        <div class="mat-dialog-header border-bottom">
+            <h2 mat-dialog-title class="mb-0 text-center">Please choose the Improving Feature</h2>
+        </div>
+        <mat-dialog-content class="mat-typography">
+            <mat-radio-group [(ngModel)]="form.currentRadioValue">
+                <table class="radio-table">
+                    <tr>
+                        <th></th>
+                        <th>No</th>
+                        <th style="min-width: 200px;">Parameters</th>
+                        <th>Descriptions</th>
+                    </tr>
+                    <tr *ngFor="let item of jsonData.featureData">
+                        <td>
+                            <mat-radio-button [value]="item.no"></mat-radio-button>
+                        </td>
+                        <td>{{item.no}}</td>
+                        <td>{{item.parameter}}</td>
+                        <td>{{item.description}}</td>
+                    </tr>
+                </table>
+            </mat-radio-group>
+        </mat-dialog-content>
+    </ng-template>
+
+    <!-- Dialog for Inventive Principle -->
+    <ng-template #editInventiveModal>
+        <div mat-dialog-actions>
+            <button mat-raised-button mat-dialog-close color="primary">Close</button>
+        </div>
+        <div class="mat-dialog-header border-bottom">
+            <h2 mat-dialog-title class="mb-0 text-center">Please choose the Inventive Principle</h2>
+        </div>
+        <mat-dialog-content class="mat-typography">
+            <mat-radio-group [(ngModel)]="form.inventive.radioValue">
+                <table class="radio-table">
+                    <tr>
+                        <th></th>
+                        <th>No</th>
+                        <th style="min-width: 200px;">Principle</th>
+                        <th>Approache</th>
+                    </tr>
+                    <tr *ngFor="let item of form.inventive.list">
+                        <td>
+                            <mat-radio-button [value]="item.no"></mat-radio-button>
+                        </td>
+                        <td style="padding: 2px">{{item.no}}</td>
+                        <td style="padding: 2px; text-align: left;">{{item.principle}}</td>
+                        <td style="padding: 2px;">
+                            <div style="text-align: left;" *ngFor="let subitem of item.approache">{{subitem}}</div>
+                        </td>
+                    </tr>
+                </table>
+            </mat-radio-group>
+        </mat-dialog-content>
+    </ng-template>
+
+</div>

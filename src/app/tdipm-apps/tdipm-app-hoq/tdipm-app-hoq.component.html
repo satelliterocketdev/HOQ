@@ -1,0 +1,270 @@
+<div style="
+ display: flex;
+ margin: 32px auto;
+ padding: 0 16px;
+ flex-direction: column;
+ align-items: center;
+ ">
+  <!-- <img src="assets/img/1.png" [style.width]="'800px'"> -->
+  <div class="input-data-wrapper">
+    <div class="float-left input-item"><span>Customer Requirement</span><input type="number" style="margin-left: 5px;"
+        [style.width]="'50px'" [(ngModel)]="form.customerRequirementCount"></div>
+    <div class="float-left input-item"><span>Technical Requirement</span><input type="number" style="margin-left: 5px;"
+        [style.width]="'50px'" [(ngModel)]="form.technicalRequirementCount"></div>
+    <div class="float-left input-item"><span>Competitive Comparison</span><input type="number" style="margin-left: 5px;"
+        [style.width]="'50px'" [(ngModel)]="form.competitiveComparisonCount"></div>
+    <button style="padding: 8px; margin-right: 10px;" (click)="generateModel()">Set</button>
+    <button style="padding: 8px;" (click)="downloadPDF()">Print to PDF</button>
+  </div>
+  <br>
+  <table id="content" #content style="padding-top:30px">
+    <!-- Technical triangle table -->
+    <tr>
+      <td colspan="4" class="border-none" style="position:relative">
+        <div class="roof-key-explanation background-color4" style="position:absolute; right: 0px; bottom: 0px">
+          <B><U>Roof Top Technical Relationships Key</U></B>
+          <table style="margin: 0 auto; margin-top: 9px;">
+            <tr>
+              <td class="border-none">++</td>
+              <td class="border-none float-left">: Strong Positive</td>
+            </tr>
+            <tr>
+              <td class="border-none">+</td>
+              <td class="border-none float-left">: Positive</td>
+            </tr>
+            <tr>
+              <td class="border-none">-</td>
+              <td class="border-none float-left">: Negative</td>
+            </tr>
+            <tr>
+              <td class="border-none">--</td>
+              <td class="border-none float-left">: Strong Negative</td>
+            </tr>
+            <tr>
+              <td class="border-none"></td>
+              <td class="border-none float-left">: No Relationship</td>
+            </tr>
+          </table>
+        </div>
+      </td>
+      <td [attr.colspan]="inputData.technicalRequirementCount" class="border-none position-relative"
+        [style.height]="technicalTableWrapperHeight()">
+        <div class="technical-table-wrapper position-absolute">
+          <table class="technical-table background-color4 border-right" [style.width]="technicalTableWidth()"
+            [style.height]="technicalTableWidth()">
+            <tr
+              *ngFor="let rowData of modelData.technicaRelationships; let first = rowFirst; let rowLast = last; index as row;">
+              <td *ngFor="let value of rowData; let first = colFirst; let colLast = last; index as col;"
+                class="position-relative">
+                <input tabindex="-1" class="cell-input technical-input" (change)="calcTotal()"
+                  [(ngModel)]="value.relation" [style.width]="'28px'">
+              </td>
+            </tr>
+
+          </table>
+        </div>
+      </td>
+    </tr>
+    <!-- table header section-->
+    <tr>
+      <td colspan="4" class="border-none"></td>
+      <td [attr.colspan]="inputData.technicalRequirementCount" class="cell-height background-color3">Engineering Characteristics (How?)</td>
+      <td [attr.colspan]="1 + inputData.competitiveComparisonCount" class="border-right background-color7">Competitive Comparison</td>
+      <td rowspan="8" class="key-width border-none position-relative" [style.width]="'265px'">
+        <div class="technical-key-desc" style="padding:5px; text-align: left;">
+          <!-- table Technical Relationships Key section-->
+          <p style="margin-top:2px; margin-bottom: 10px; text-align: center;"><B><U>Technical Relationships key</U></B>
+          </p>
+          <div style="display: flex; align-items: center; height: 35px">
+            <span style="width: 32px; padding-top: 7px"><img src="assets/symbols/scrubber.png"
+                style="height:25px; cursor: pointer"></span>
+            <span>: Strong Relationship (9 Points)</span>
+          </div>
+          <div style="display: flex; align-items: center; height: 35px">
+            <span style="width: 32px; padding-top: 7px"><img src="assets/symbols/circle.png"
+                style="height:25px; cursor: pointer"></span>
+            <span>: Normal Relationship (3 Points)</span>
+          </div>
+          <div style="display: flex; align-items: center; height: 35px">
+            <span style="width: 32px; padding-top: 7px"><img src="assets/symbols/triangle.png"
+                style="height:25px; cursor: pointer"></span>
+            <span>: Low Relationship (1 Point)</span>
+          </div>
+          <div style="display: flex; align-items: center; height: 35px">
+            <span style="width: 32px; padding-top: 7px"></span>
+            <span>: No Relationship (0 Points)</span>
+          </div>
+        </div>
+
+        <!-- table Direction Improvement Key section-->
+        <div class="direction-key-desc" style="padding:5px">
+          <p style="margin-top:2px; margin-bottom: 10px; text-align: center;"><B><U>Direction Improvement key</U></B>
+          </p>
+          <div style="display: flex; align-items: center; height: 35px">
+            <span style="width: 35px; padding-top: 7px"><img src="assets/symbols/arrow-up.png"
+                style="height:25px; cursor: pointer"></span>
+            <span>: Increased (Higher) Value is Better</span>
+          </div>
+          <div style="display: flex; align-items: center; height: 35px">
+            <span style="width: 35px; padding-top: 7px"><img src="assets/symbols/arrow-down.png"
+                style="height:25px; cursor: pointer"></span>
+            <span>: Decreased (Lower) Value is Better</span>
+          </div>
+          <div style="display: flex; align-items: center; height: 35px">
+            <span style="width: 35px; padding-top: 7px"><img src="assets/symbols/none.png"
+                style="height:25px; cursor: pointer"></span>
+            <span>: On Target Value is Better</span>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td rowspan="2" colspan="2" class="border-none"></td>
+      <td rowspan="2" class="cell-width background-color2">
+        <img src="assets/symbols/priority-rating.png">
+        <!-- <span class="text-direction-vertical">(e.g. 1-5; 1-10)<br>Importance/Priority Rating</span> -->
+      </td>
+      <td rowspan="2" class="cell-width background-color2">
+        <!-- <span class="text-direction-vertical">Rating %</span> -->
+        <img src="assets/symbols/rating.png">
+      </td>
+      <td *ngFor="let item of modelData.designParameters;" class="background-color3 cell-width position-relative">
+        <input class="cell-input input-direction-vertical" [style.height]="'40px'" [style.width]="'141px'" [(ngModel)]="item.name">
+      </td>
+      <td rowspan="2" 
+        style="vertical-align: bottom;text-align: center;"
+        class="background-color7 cell-width position-relative">
+        <span style="-ms-writing-mode: tb-rl;
+        -webkit-writing-mode: vertical-rl;
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        white-space: nowrap;">Customer Score</span>
+      </td>
+      <td *ngFor="let item of modelData.competitiveComparison;  let last = last;" rowspan="2"
+        class="background-color7 cell-width position-relative" [class.border-right]="last">
+        <input class="cell-input input-direction-vertical" [style.width]="'175px'" [style.height]="'40px'" [(ngModel)]="item.name">
+      </td>
+    </tr>
+    <tr>
+      <td *ngFor="let item of modelData.designParameters; index as col" class="td-technical-direction"
+        (contextmenu)="onContextMenu($event, 'direction-improvement', {row: 0, col:col})"
+        title="Right click to set details">
+        <div [ngSwitch]="item.key" style="display: flex; justify-content: center; align-items: center;">
+          <img *ngSwitchCase="'higher'" src="assets/symbols/arrow-up.png" style="height:25px; cursor: pointer">
+          <img *ngSwitchCase="'lower'" src="assets/symbols/arrow-down.png" style="height:25px; cursor: pointer">
+          <img *ngSwitchCase="'better'" src="assets/symbols/none.png" style="height:22px; cursor: pointer">
+        </div>
+      </td>
+    </tr>
+
+    <!-- Customer Requirements -->
+    <tr *ngFor="let item of modelData.customerRequirements; let first = first; let last = last; index as row;">
+      <td *ngIf="first" [attr.rowspan]="modelData.customerRequirements.length"
+        class="customer-label-width border-bottom background-color1">
+        <img src="assets/symbols/customer-requirement.png">
+        <!-- <span class="text-direction-vertical"><B>(What?)<br>Requirements<br>Customer</B></span> -->
+      </td>
+      <!-- customer requirement name -->
+      <td class="customer-width cell-height background-color1 position-relative">
+        <input class="cell-input text-align-left" [(ngModel)]="item.name" [style.width]="'100%'">
+      </td>
+      <!-- customer priority rating -->
+      <td class="background-color2 position-relative">
+        <input class="cell-input" (change)="calcTotal()" [(ngModel)]="item.priorityRating" [style.width]="'100%'">
+      </td>
+      <!-- customer rating -->
+      <td class="background-color2 position-relative">
+        {{item.rating}}%
+        <!-- <input class="cell-input" (change)="calcTotal()" [(ngModel)]="item.rating" [style.width]="'100%'"> -->
+      </td>
+      <!-- Technical Requirement (How?) -->
+      <td *ngFor="let value of item.technicalRequirements; index as col;" class="td-technical-relationship"
+        (contextmenu)="onContextMenu($event, 'technical-requirement', {row: row, col:col})"
+        title="Right click to set details">
+        <div [ngSwitch]="value" style="display: flex; justify-content: center; align-items: center;">
+          <img *ngSwitchCase="'low'" src="assets/symbols/triangle.png" style="height:25px; cursor: pointer">
+          <img *ngSwitchCase="'normal'" src="assets/symbols/circle.png" style="height:28px; cursor: pointer">
+          <img *ngSwitchCase="'strong'" src="assets/symbols/scrubber.png"
+            style="height:28px; cursor: pointer; margin-left: 2px;">
+          <!-- <img *ngSwitchCase="'none'"  src="assets/symbols/none.png" style="height:28px; cursor: pointer; margin-left: 2px;"> -->
+        </div>
+      </td>
+
+      <!-- Customer Score	 -->
+      <td class="background-color7" [class.border-bottom]="last">
+        {{item.customerScore}}
+      </td>
+
+      <!-- Competitive Comparison	 -->
+      <td *ngFor="let tdItem of item.competitiveComparison;let lastValue = last;"
+        class="background-color7 position-relative" [class.border-right]="lastValue" [class.border-bottom]="last">
+        <input class="cell-input" [style.width]="'100%'" (change)="calcTotal()" [(ngModel)]="tdItem.value">
+      </td>
+    </tr>
+
+    <!-- Technical Totals -->
+    <tr>
+      <td rowspan="3" class="border-none"><span></span></td>
+      <td class="background-color6 cell-height"><span>Technical Totals</span></td>
+      <td class="background-color2"><span>{{modelData.technicalTotals.priorityRating}}</span></td>
+      <td class="background-color2"><span>{{modelData.technicalTotals.rating}}%</span></td>
+      <td *ngFor="let value of modelData.technicalTotals.designParameters; let last = last;" class="background-color6"
+        [class.border-right]="last">
+        <span>{{value}}</span>
+      </td>
+    </tr>
+    <!-- Technical Ranking % -->
+    <tr>
+      <td class="cell-height background-color6"><span>Technical Ranking %</span></td>
+      <td class="background-color6"><span>{{modelData.technicalRanking.priorityRating}}</span></td>
+      <td class="background-color6"><span>{{modelData.technicalRanking.rating}}</span></td>
+      <td *ngFor="let value of modelData.technicalRanking.designParameters; let last = last;" class="background-color6"
+        [class.border-right]="last">
+        <span>{{value}}%</span>
+      </td>
+    </tr>
+    <!-- Target Values -->
+    <tr>
+      <td class="cell-height border-bottom background-color6"><span>Target Values</span></td>
+      <td class="border-bottom background-color6"><span>{{modelData.targetValues.priorityRating}}</span></td>
+      <td class="border-bottom background-color6"><span>{{modelData.targetValues.rating}}</span></td>
+      <td *ngFor="let value of modelData.targetValues.designParameters; let last = last;"
+        class="background-color6 border-bottom position-relative" [class.border-right]="last">
+        <input class="cell-input" [style.width]="'100%'" [(ngModel)]="value">
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- Context Menu -->
+<div class="menu context-menu shadow" *ngIf="isContextMenuOpen" [style.left]="contextMenuPosition.x"
+  [style.top]="contextMenuPosition.y">
+  <!-- Technical Relationships Menu -->
+  <div *ngIf="clickedItem.type == 'technical-requirement'" style="display: flex; align-items: center;">
+    <img (click)="onContextMenuAction('low')" src="assets/symbols/triangle.png" style="height:25px; cursor: pointer">
+    <img (click)="onContextMenuAction('normal')" src="assets/symbols/circle.png" style="height:28px; cursor: pointer">
+    <img (click)="onContextMenuAction('strong')" src="assets/symbols/scrubber.png"
+      style="height:28px; cursor: pointer; margin-left: 2px;">
+    <!-- <img (click)="onContextMenuAction('none')" src="assets/symbols/none.png" style="height:24px; cursor: pointer; margin-left: 2px;"> -->
+    <span (click)="onContextMenuAction('none')"
+      style="height:24px; cursor: pointer; margin-left: 2px;"><b>N/A</b></span>
+  </div>
+  <!-- Direction Improvement Menu -->
+  <div *ngIf="clickedItem.type == 'direction-improvement'" style="display: flex; align-items: center;">
+    <img (click)="onContextMenuAction('higher')" src="assets/symbols/arrow-up.png"
+      style="height:28px; cursor: pointer; margin-left: 2px;">
+    <img (click)="onContextMenuAction('lower')" src="assets/symbols/arrow-down.png"
+      style="height:28px; cursor: pointer; margin-left: 2px;">
+    <img (click)="onContextMenuAction('better')" src="assets/symbols/none.png"
+      style="height:22px; cursor: pointer; margin-left: 2px;">
+      <span (click)="onContextMenuAction('none')"
+      style="height:24px; cursor: pointer; margin-left: 2px;"><b>N/A</b></span>      
+  </div>
+</div>
+
+<!-- Navigation Button -->
+<div class="navigation">
+  <button mat-raised-button (click)="navigateTRIZ()">
+    <i class="fas fa-arrow-right" style="font-size: 25px; color: blue;"></i>&nbsp;Navigate to TRIZ
+  </button>
+</div>

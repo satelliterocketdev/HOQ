@@ -1,0 +1,197 @@
+[
+    {
+        "no": 1,
+        "parameter": "Weight of moving object",
+        "description": "The mass of the moving object which gravitational force acts on it (weight). The force that the moving body exerts on its support or suspension."
+    },
+    {
+        "no": 2,
+        "parameter": "Weight of stationary object",
+        "description": "The mass of the stationary object in a gravitational force acts on it (weight). The force that the stationary body exerts on its support or suspension, or on the surface on which it rests."
+    },
+    {
+        "no": 3,
+        "parameter": "Length (or angle) of moving object",
+        "description": "Any linear or angular dimension, involving a moving object with respect to its surroundings. It can be any distance: linear or rotational, small or large distance (tolerance, depth, height, etc.)."
+    },
+    {
+        "no": 4,
+        "parameter": "Length (or angle)of stationary object",
+        "description": "Any linear or angular dimension, involving a stationary object with respect to its surroundings."
+    },
+    {
+        "no": 5,
+        "parameter": "Area of moving object",
+        "description": "Any geometrical dimension involving surface or surface area occupied by the moving object, either internal or external, of a moving object."
+    },
+    {
+        "no": 6,
+        "parameter": "Area of stationary object",
+        "description": "Any geometrical dimension involving surface or surface area occupied by the stationary object, either internal or external, of a stationary object."
+    },
+    {
+        "no": 7,
+        "parameter": "Volume of moving object",
+        "description": "Any cubic measure of geometrical dimension occupied by the moving object with respect to its surroundings."
+    },
+    {
+        "no": 8,
+        "parameter": "Volume of stationary object",
+        "description": "Any cubic measure of geometrical dimension occupied by the stationary object with respect to its surroundings."
+    },
+    {
+        "no": 9,
+        "parameter": "Speed",
+        "description": "Rate of position change of an object in time or rate of any kind of process or action. Speed can be relative or absolute, linear or angular."
+    },
+    {
+        "no": 10,
+        "parameter": "Force",
+        "description": "Force measures the interaction between systems. In Newtonian physics, force = mass x acceleration. In TRIZ, force is any interaction that is intended to change an object's condition (its magnitude and directions)."
+    },
+    {
+        "no": 11,
+        "parameter": "Stress or pressure",
+        "description": "Stress is the amount of force applied per unit area, experienced by an object (it can be tensile, compressive, bending, torsional, static or dynamic). Pressure is the amount of force that is applied per unit area."
+    },
+    {
+        "no": 12,
+        "parameter": "Shape",
+        "description": "The external contour or appearance characteristic of an object or a system."
+    },
+    {
+        "no": 13,
+        "parameter": "Stability of the object's composition",
+        "description": "The wholeness or integrity of the system; the relationship of the system's constituent elements. Wear, chemical decomposition and disassembly are all decreases the stability of an object. Increasing entropy is decreasing stability."
+    },
+    {
+        "no": 14,
+        "parameter": "Strength",
+        "description": "The extent to which the object is able to resist changing in response to force. Resistance to breaking/ failure. The capacity of an object to withstand a critical force or pressure before it fails."
+    },
+    {
+        "no": 15,
+        "parameter": "Duration of action by a moving object",
+        "description": "The time that a moving object or system takes to perform an action without fails. Service life, mean time between failures is a measure of the duration of an action."
+    },
+    {
+        "no": 16,
+        "parameter": "Duration of action by a stationary object",
+        "description": "The time that a stationary object or system takes to perform an action without fails. Service life, mean time between failures is a measure of the duration of an action."
+    },
+    {
+        "no": 17,
+        "parameter": "Temperature",
+        "description": "The thermal condition of the object or system. Temperature is a measurement of the average kinetic energy of the molecules in an object or a system. Includes other thermal parameters, such as heat capacity, that affect the rate of change of temperature."
+    },
+    {
+        "no": 18,
+        "parameter": "Illumination intensity",
+        "description": "Light flux per unit area, also any other illumination characteristics of the system such as brightness, light quality etc."
+    },
+    {
+        "no": 19,
+        "parameter": "Use of energy by moving object",
+        "description": "The measure of a moving object's capacity or ability for doing work. In classical mechanics, energy is the product of force x distance. This includes the use of energy provided by the super-system (such as electrical energy or heat). Energy required doing a particular job."
+    },
+    {
+        "no": 20,
+        "parameter": "Use of energy by stationary object",
+        "description": "The measure of a stationary object's capacity or ability for doing work. In classical mechanics, energy is the product of force x distance. This includes the use of energy provided by the super-system (such as electrical energy or heat.) Energy required doing a particular job."
+    },
+    {
+        "no": 21,
+        "parameter": "Power",
+        "description": "The time rate at which work is performed. The rate of use of energy."
+    },
+    {
+        "no": 22,
+        "parameter": "Loss of energy",
+        "description": "A part of energy that does not contribute to the job being done. See 19. Reducing the loss of energy sometimes requires different techniques from improving the use of energy, which is why this is a separate category."
+    },
+    {
+        "no": 23,
+        "parameter": "Loss of substance",
+        "description": "Loss of substance may be partial or complete, permanent or temporary: loss of some of a system's materials, substances, parts or subsystems."
+    },
+    {
+        "no": 24,
+        "parameter": "Loss of information",
+        "description": "Loss of information may be partial or complete, permanent or temporary: loss of data or access to data in or by a system. Frequently includes sensory data such as aroma, texture, sound."
+    },
+    {
+        "no": 25,
+        "parameter": "Loss of time",
+        "description": "Time represents the duration of an activity. Improving the loss of time means reducing the time taken for the activity. \u2018Cycle time reduction\u2019 is a common requirement."
+    },
+    {
+        "no": 26,
+        "parameter": "Quantity of substance/the matter",
+        "description": "The number or amount of a system's materials, substances, parts or subsystems which might be changed fully or partially, permanently or temporarily."
+    },
+    {
+        "no": 27,
+        "parameter": "Reliability",
+        "description": "A system's ability to perform its intended functions in predictable ways and the same repeated result under the same conditions."
+    },
+    {
+        "no": 28,
+        "parameter": "Measurement accuracy",
+        "description": "The closeness of the measurements to a specific value of a property of a system. Reducing the error in a measurement increases the accuracy of the measurement."
+    },
+    {
+        "no": 29,
+        "parameter": "Manufacturing precision",
+        "description": "The extent to which the actual characteristics of a system or an object match the specified or required characteristics."
+    },
+    {
+        "no": 30,
+        "parameter": "External harm affects the object",
+        "description": "Susceptibility of a system to externally generated (harmful) effects."
+    },
+    {
+        "no": 31,
+        "parameter": "Object-generated harmful factors",
+        "description": "A harmful effect is one that reduces the efficiency or quality of the functioning of an object or a system. These harmful effects are generated by an object or a system, as part of its operation."
+    },
+    {
+        "no": 32,
+        "parameter": "Ease of manufacture",
+        "description": "The degree of facility, comfort or effortlessness in manufacturing or fabricating an object or a system."
+    },
+    {
+        "no": 33,
+        "parameter": "Ease of operation",
+        "description": "Operation can be done easily, without difficulty or effort. Simplicity: A process is not easy if it requires a large number of people, large number of steps in the operation, needs special tools and so on. & quote; Hard\u2019 processes have low yield and \u2018easy\u2019 processes have high yield; they are easy to do right."
+    },
+    {
+        "no": 34,
+        "parameter": "Ease of repair",
+        "description": "Quality characteristics such as convenience, comfort, simplicity and time to repair faults, failures or defects in a system."
+    },
+    {
+        "no": 35,
+        "parameter": "Adaptability or versatility",
+        "description": "The extent to which a system/object positively responds to external changes. Also, a system that can be used in multiple ways in a variety of circumstances."
+    },
+    {
+        "no": 36,
+        "parameter": "Device complexity",
+        "description": "The number, interaction, and diversity of elements and element interrelationships within a system. The user may be an element of the system that increases the complexity. The difficulty of mastering the system is a measure of its complexity."
+    },
+    {
+        "no": 37,
+        "parameter": "Difficulty of detecting and measuring",
+        "description": "Measuring or monitoring systems that are complex, costly, require much time and labor to set up and use, or that have complex relationships between components or components that interfere with each other all demonstrate \u2018difficulty of detecting and measuring\u2019. Increasing cost of measuring to a satisfactory error is also a sign of increased difficulty of measuring."
+    },
+    {
+        "no": 38,
+        "parameter": "Extent of automation",
+        "description": "The extent to which a system or object performs its functions without human interface. The lowest level of automation is the use of a manually operated tool. For intermediate levels, humans program the tool, observe its operation, and interrupt or reprogram as needed. For the highest level, the machine senses the operation needed, programs itself, and monitors its own operations."
+    },
+    {
+        "no": 39,
+        "parameter": "Productivity",
+        "description": "The number of functions or operations performed by a system per unit time. The time for a unit operation. The output per unit time, or the cost per unit output."
+    }
+]
